@@ -11,7 +11,7 @@ class CBSdata:
         #logging.info("Retrieving all the identifiers")
         print("Retrieving all the identifiers")
         #self.list_of_identifier = [value['Identifier'] for value in self.tables]
-        self.list_of_identifier = ['84669NED']
+        self.list_of_identifier = ['84669NED']#, '83583NED', '83582NED']
         self.writing_to_storage(self.list_of_identifier)
 
     def check_path_exists(self, path: str):
