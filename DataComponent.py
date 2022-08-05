@@ -1,13 +1,10 @@
 import cbsodata
 import logging
-import json
 import dropbox
-import os
 
 class CBSdata:
     def __init__(self):
         '''This connector first retrieves all the generic description including the identifier'''
-
         self.dbx = dropbox.Dropbox('sl.BMwUDC47VdoK_GQCUpq6mwVlD18s5W6Enz-ImofkH5UyVAN6JGR6F2l7D-leoMLXw_JAdv0AGw-zbhail8QuoknAdQDoQW1ZkKwIn88527jtZDJlXr5iDyIXzWl0LCSaud3mul-riYGG')
         self.tables = cbsodata.get_table_list()
 
