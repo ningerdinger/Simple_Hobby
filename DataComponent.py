@@ -4,12 +4,14 @@ import dropbox
 
 class CBSdata:
     def __init__(self):
-        '''This connector first retrieves all the generic description including the identifier'''
-        self.dbx = dropbox.Dropbox('sl.BMwUDC47VdoK_GQCUpq6mwVlD18s5W6Enz-ImofkH5UyVAN6JGR6F2l7D-leoMLXw_JAdv0AGw-zbhail8QuoknAdQDoQW1ZkKwIn88527jtZDJlXr5iDyIXzWl0LCSaud3mul-riYGG')
-        self.tables = cbsodata.get_table_list()
-
-        logging.info("Retrieving all the identifiers")
-        self.list_of_identifier = [value['Identifier'] for value in self.tables]
+        '''This connector retrieves all the generic description including the identifier. After that it will retrieve the data corresponding to the identifier.
+        Finallly, it will write everything, as raw data, to a dropbox storage'''
+        self.dbx = dropbox.Dropbox('sl.BMzXW-sbtWVAYTtZOUvPGVpdIKFCtWOvSa5CJborii9mlDarnQ6cvUGKVqz0LomSFsj5x0viXOwfWJ3hxO6SOMhO9Ps2OV8HMOMDj9dcFyJyG7RnzlKkQx7jZrpJLfT7IDlHa-Qv24Df')
+        # self.tables = cbsodata.get_table_list()
+        #logging.info("Retrieving all the identifiers")
+        print("Retrieving all the identifiers")
+        #self.list_of_identifier = [value['Identifier'] for value in self.tables]
+        self.list_of_identifier = ['84669NED']
         self.writing_to_storage(self.list_of_identifier)
 
     def check_path_exists(self, path: str):
@@ -21,27 +23,17 @@ class CBSdata:
 
     def writing_to_storage(self, list_identifier: list):
         for identifier in list_identifier:
-            logging.info(f'retrieving data for table {identifier}')
+            #logging.info(f'retrieving data for table {identifier}')
+            print(f'Retrieving data from {identifier}')
             data = cbsodata.get_data(identifier)
             path = f'/DigitalPowerCBSData/{identifier}'
             if self.check_path_exists(path):
-                print('Hurray')
+
             else:
+                print(f'Partition directory {identifier} does not exist. We make this directory')
                 self.dbx.files_create_folder_v2(path)
 
 
 new = CBSdata()
 
-# tables = cbsodata.get_table_list()
-# print(tables)
 
-# for item in tables:
-# print(item['Identifier'])
-# data = cbsodata.get_data('80072NED')
-# print(data)
-# for id in data:
-#     print(id)
-
-# df = pd.DataFrame(data)
-# print(df)
-# print(df.columns)
