@@ -1,11 +1,38 @@
 import dropbox
+import os
 
-dbx = dropbox.Dropbox('sl.BMzeDs1lImzutaO611_dWZRewAGnsm2nuh2hYrdr7OCc9qI01YfhdzyDq1sWukXppuyzkqOEbXXGH_97Gef792FZ2ydlb6VckTGHbh3Dm9Jmy6NJyf4p0t6FC3Fhaka9GXaQ6iJ9USvL')
+
+dbx = dropbox.Dropbox('sl.BMwUDC47VdoK_GQCUpq6mwVlD18s5W6Enz-ImofkH5UyVAN6JGR6F2l7D-leoMLXw_JAdv0AGw-zbhail8QuoknAdQDoQW1ZkKwIn88527jtZDJlXr5iDyIXzWl0LCSaud3mul-riYGG')
 
 dropboxBaseDir = '/test_dropbox'
-dropboxNewSubDir = '/new_empty_sub_dir'
+dropboxNewSubDir = '/new_empty_sub_dir/'
+path = dropboxBaseDir+dropboxNewSubDir
+directory = path+'data.json'
 
-dbx.files_create_folder_v2(dropboxBaseDir + dropboxNewSubDir)
+with path.open("rb") as f:
+   # upload gives you metadata about the file
+   # we want to overwite any previous version of the file
+   dbx.files_upload(f.read(), directory, mode=dropbox.files.WriteMode("overwrite"))
 
-for entry in dbx.files_list_folder('').entries:
-    print(entry.name)
+
+
+
+# print(dbx.files_get_metadata(path))
+# dbx.files_create_folder_v2(path)
+#
+# for entry in dbx.files_list_folder('').entries:
+#     print(entry.name)
+#
+#
+# def exists(path):
+#     return os.path.basename(path) in [e.name for e in dbx.files_list_folder(path=os.path.dirname(path)).entries]
+#
+# def exists2(path):
+#     try:
+#         dbx.files_get_metadata(path)
+#         return True
+#     except:
+#         return False
+#
+# # print(exists(path))
+# print(exists2(path))
