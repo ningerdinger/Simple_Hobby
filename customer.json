@@ -1,0 +1,2 @@
+{"firstName": "John","lastName": "Smith","age": 25,"address":{"streetAddress": "21 2nd Street","city": "New York","state": "NY","postalCode": "10021"}, "phoneNumber":[{"phoneType": "home","number": "212 555-1234"},{"phoneType": "fax","number": "646 555-4567"}]},
+{"firstName": "Vijay","lastName": "Jaiswal","age": 32,"address":{"streetAddress": "Delhi Cantt","city": "Delhi","state": "DEL","postalCode": "110010"}, "phoneNumber":[{"phoneType": "cell","number": "997 189-6100"}]}
