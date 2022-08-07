@@ -1,6 +1,5 @@
-import sys
+import os
 import logging
-# import os
 import json
 from xml.dom import ValidationErr
 import cbsodata
@@ -22,8 +21,17 @@ class CBSdata:
 
     def save_dict_to_json(self, data_dict: dict, identifier: str):
         '''Converts a dictionary to JSON file and also saves it on your local drive'''
-        with open(f'storage/{identifier}.json', 'w', encoding="utf8") as f:
+        with open(f'{identifier}.json', 'w', encoding="utf8") as f:
             json.dump(data_dict, f, indent=1)
+        # MYDIR = 'C:/Users/jelle/OneDrive/Documenten/DigitalPower/DataComponent/storage'
+        # CHECK_FOLDER = os.path.isdir(MYDIR)
+        # if CHECK_FOLDER:
+        #     with open(f'storage/{identifier}.json', 'w', encoding="utf8") as f:
+        #         json.dump(data_dict, f, indent=1)
+        # else:
+        #     os.makedirs(MYDIR)
+        #     with open(f'storage/{identifier}.json', 'w', encoding="utf8") as f:
+        #         json.dump(data_dict, f, indent=1)
 
     def writing_to_json(self, list_identifier: list):
         '''This method first retrievers the data based on the identifier.
@@ -41,4 +49,4 @@ class CBSdata:
 
 
 token = "sl.BMz5d0gTykmAfhUmZtYNTCTLhsxJ7ONhuwKBXX4aO2kwXOKZDSoh87m6Im7Q3VO0WnBwv4RakjpOnknhpHuQ3rwFDgPl4oe08EzujJlttbWJoTmNH9NaEsOEnSjkJln9NBfXybD5iP6X"
-new = CBSdata(token)
+CBSdata(token)

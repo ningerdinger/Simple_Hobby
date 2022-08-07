@@ -1,0 +1,5 @@
+%(asctime)s:%(levelname)s:%(message)s
+%(asctime)s:%(levelname)s:%(message)s
+%(asctime)s:%(levelname)s:%(message)s
+2022-08-07 00:51:04,576 - __main__ - INFO - Panic! at the disco
+2022-08-07 00:51:04,576 - __main__ - INFO - Weezer
