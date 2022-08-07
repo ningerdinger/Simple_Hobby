@@ -18,3 +18,5 @@ class loggerMain:
         logger.setLevel(logging.INFO)
 
 
+def __name__ == '__main__':
+    loggerMain()
