@@ -1,7 +1,5 @@
-import os
 import logging
 import json
-from xml.dom import ValidationErr
 import cbsodata
 from utilities import writing_to_DB as wDB
 
@@ -45,8 +43,8 @@ class CBSdata:
             logging.info(f'converting data to {identifier}.json')
             self.save_dict_to_json(data, identifier)
             path = f'/DigitalPowerCBSData/Bronze/{identifier}'
-            wDB.WritingToDB(name=identifier, path=path, key=self.key)
+            wDB.WritingToDB(name=identifier, path=path, key=self.key, file_format='json')
 
 
-token = "sl.BMz5d0gTykmAfhUmZtYNTCTLhsxJ7ONhuwKBXX4aO2kwXOKZDSoh87m6Im7Q3VO0WnBwv4RakjpOnknhpHuQ3rwFDgPl4oe08EzujJlttbWJoTmNH9NaEsOEnSjkJln9NBfXybD5iP6X"
+token = "sl.BM7kyOJqzAAO6Ivcjd_l0t70jp7xOCH35em_xguC6gRtpQwa_SCTKAX-aZFxBIIKcEnfetzNIotjVB9J2mKllKi_t9cu8x0YoYh9IEiWiECtUJ90phdYts5YpwzOVZpYm3r_zakbsGd3"
 CBSdata(token)

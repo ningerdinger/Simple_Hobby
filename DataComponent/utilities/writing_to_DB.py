@@ -5,18 +5,19 @@ import dropbox
 
 
 class WritingToDB:
-    def __init__(self, name: str, path: str, key: str):
+    def __init__(self, name: str, path: str, key: str, file_format: str):
         '''This class writes files in JSON format toward Dropbox
         name: The name that the JSON file should have
         path: the directory in which it needs to be saved on Dropbox
-        key: The access token that can be generated via the app'''
+        key: The access token that can be generated via the app
+        file_format: indicates what type file it is to be written to Dropbox'''
         self.dbx = dropbox.Dropbox(key)
         try:
-            file_json = open(f'{name}.json', 'rb')
+            file_json = open(f'{name}.{file_format}', 'rb')
             if self.check_path_exists(path):
                 self.dbx.files_upload(
                     file_json.read(),
-                    f'{path}/{name}.json',
+                    f'{path}/{name}.{file_format}',
                     mode=dropbox.files.WriteMode("overwrite")
                     )
                 logging.info('Saving to the Cloud success')
@@ -26,7 +27,7 @@ class WritingToDB:
                 self.dbx.files_create_folder_v2(path)
                 self.dbx.files_upload(
                     file_json.read(),
-                    f'{path}/{name}.json',
+                    f'{path}/{name}.{file_format}',
                     mode=dropbox.files.WriteMode("overwrite")
                     )
                 logging.info('Saving to the Cloud success')
